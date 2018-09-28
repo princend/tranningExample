@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CarServiceService } from './car-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,25 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tranning';
+
+
+  cars;
+  newCars;
+
+  constructor(private carService: CarServiceService) {
+    this.carService.getData().subscribe(e => this.newCars = this.cars = e)
+  }
+
+  appSearch(event) {
+    this.newCars = [];
+    this.cars.forEach(element => {
+      this.newCars.push(Object.assign({}, element))
+    });
+
+
+    this.newCars = this.newCars.filter(i => i.name.indexOf(event) > -1 || !event)
+  }
+
+
+
 }
