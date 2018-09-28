@@ -14,7 +14,9 @@ export class CarServiceService {
   //  return    this.http.get('assets/data/car.json')
   // }
   getData() {
+    return this.http.get('assets/data/car.json')
+  }
 
-    return   this.http.get('assets/data/car.json')
-   }
+
+  
 }
